@@ -12,11 +12,11 @@ const init = async () => {
   const connection = await amqp.connect(process.env.RABBITMQ_SERVER);
   const channel = await connection.createChannel();
 
-  await channel.assertQueue('export:notes', {
+  await channel.assertQueue('export:openmusic', {
     durable: true,
   });
 
-  channel.consume('export:notes', listener.listen, { noAck: true });
+  channel.consume('export:openmusic', listener.listen, { noAck: true });
 };
 
 init();
