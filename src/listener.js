@@ -10,9 +10,9 @@ class Listener {
 
   async listen(message) {
     try {
-      const { userId, targetEmail } = JSON.parse(message.content.toString());
+      const { playlistId, targetEmail } = JSON.parse(message.content.toString());
 
-      const playlistsongs = await this._playlistsService.getSongsFromPlaylist(userId);
+      const playlistsongs = await this._playlistsService.getSongsFromPlaylist(playlistId);
       const result = await this._mailSender.sendEmail(targetEmail, JSON.stringify(playlistsongs));
       console.log(result);
     } catch (error) {
